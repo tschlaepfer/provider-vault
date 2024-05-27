@@ -15,7 +15,16 @@ func Configure(p *config.Provider) {
             Type: "Group",
         }
         r.References["mount_accessor"] = config.Reference{
-            Type: "AuthBackend",
+            Type: "github.com/upbound/provider-vault/apis/jwt/v1alpha1.AuthBackend",
+        }
+		r.References["mount_accessor"] = config.Reference{
+            Type: "github.com/upbound/provider-vault/apis/github/v1alpha1.AuthBackend",
+        }
+		r.References["mount_accessor"] = config.Reference{
+            Type: "github.com/upbound/provider-vault/apis/ldap/v1alpha1.AuthBackend",
+        }
+		r.References["mount_accessor"] = config.Reference{
+            Type: "github.com/upbound/provider-vault/apis/okta/v1alpha1.AuthBackend",
         }
     })
 }

@@ -150,7 +150,7 @@ spec:
                       to.
                     type: string
                   mountAccessorRef:
-                    description: Reference to a AuthBackend in okta to populate mountAccessor.
+                    description: Reference to a AuthBackend in jwt to populate mountAccessor.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -184,7 +184,7 @@ spec:
                     - name
                     type: object
                   mountAccessorSelector:
-                    description: Selector for a AuthBackend in okta to populate mountAccessor.
+                    description: Selector for a AuthBackend in jwt to populate mountAccessor.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

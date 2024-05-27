@@ -9,7 +9,8 @@ import (
 	"context"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
-	v1alpha1 "github.com/upbound/provider-vault/apis/okta/v1alpha1"
+	v1alpha1 "github.com/upbound/provider-vault/apis/jwt/v1alpha1"
+	common "github.com/upbound/provider-vault/config/common"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
@@ -38,7 +39,7 @@ func (mg *GroupAlias) ResolveReferences(ctx context.Context, c client.Reader) er
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.MountAccessor),
-		Extract:      reference.ExternalName(),
+		Extract:      common.ExtractAccessor(),
 		Reference:    mg.Spec.ForProvider.MountAccessorRef,
 		Selector:     mg.Spec.ForProvider.MountAccessorSelector,
 		To: reference.To{

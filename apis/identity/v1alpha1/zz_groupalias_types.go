@@ -70,15 +70,16 @@ type GroupAliasParameters struct {
 
 	// Mount accessor of the authentication backend to which this alias belongs to.
 	// Mount accessor to which this alias belongs to.
-	// +crossplane:generate:reference:type=github.com/upbound/provider-vault/apis/okta/v1alpha1.AuthBackend
+	// +crossplane:generate:reference:type=github.com/upbound/provider-vault/apis/jwt/v1alpha1.AuthBackend
+	// +crossplane:generate:reference:extractor=github.com/upbound/provider-vault/config/common.ExtractAccessor()
 	// +kubebuilder:validation:Optional
 	MountAccessor *string `json:"mountAccessor,omitempty" tf:"mount_accessor,omitempty"`
 
-	// Reference to a AuthBackend in okta to populate mountAccessor.
+	// Reference to a AuthBackend in jwt to populate mountAccessor.
 	// +kubebuilder:validation:Optional
 	MountAccessorRef *v1.Reference `json:"mountAccessorRef,omitempty" tf:"-"`
 
-	// Selector for a AuthBackend in okta to populate mountAccessor.
+	// Selector for a AuthBackend in jwt to populate mountAccessor.
 	// +kubebuilder:validation:Optional
 	MountAccessorSelector *v1.Selector `json:"mountAccessorSelector,omitempty" tf:"-"`
 

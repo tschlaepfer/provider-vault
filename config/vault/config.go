@@ -11,8 +11,8 @@ func Configure(p *config.Provider) {
 		r.Kind = "VaultNamespace"
 		r.ShortGroup = "vault"
 	})
-	p.AddResourceConfigurator("vault_pki_secret_backend_sign", func(r *config.Resource) {
-		r.Kind = "SecretBackendSign"
+	p.AddResourceConfigurator("vault_pki_secret_backend_root_sign_intermediate", func(r *config.Resource) {
+		r.Kind = "SecretBackendRootSignIntermediate"
 		r.ShortGroup = "pki"
 		r.References["csr"] = config.Reference{
 			Type: "SecretBackendIntermediateCertRequest",
@@ -23,7 +23,7 @@ func Configure(p *config.Provider) {
 		r.Kind = "SecretBackendIntermediateSetSigned"
 		r.ShortGroup = "pki"
 		r.References["certificate"] = config.Reference{
-			Type: "SecretBackendSign",
+			Type: "SecretBackendRootSignIntermediate",
 			Extractor: common.CrtExtractor,
 		}
 	})

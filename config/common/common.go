@@ -53,10 +53,27 @@ func ExtractCrt() reference.ExtractValueFn {
 		if err != nil {
 			return ""
 		}
-		r, err := paved.GetString("status.atProvider.crt")
+		r, err := paved.GetString("status.atProvider.certificate")
 		if err != nil {
 			return ""
 		}
 		return r
 	}
 }
+
+p.AddResourceConfigurator("vault_pki_secret_backend_root_sign_intermediate", func(r *config.Resource) {
+	r.Kind = "SecretBackendRootSignIntermediate"
+	r.ShortGroup = "pki"
+	r.References["csr"] = config.Reference{
+		Type: "SecretBackendIntermediateCertRequest",
+		Extractor: common.CsrExtractor,
+	}
+})
+p.AddResourceConfigurator("vault_pki_secret_backend_intermediate_set_signed", func(r *config.Resource) {
+	r.Kind = "SecretBackendIntermediateSetSigned"
+	r.ShortGroup = "pki"
+	r.References["certificate"] = config.Reference{
+		Type: "SecretBackendRootSignIntermediate",
+		Extractor: common.CrtExtractor,
+	}
+})
